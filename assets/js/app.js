@@ -8,7 +8,6 @@ $("#currentDay").text(weekDay);
 
 // update greeting
 const currentHour = dt.hour;
-
 if(currentHour < 12) {
     $("#greeting").text('good morning')
 } else if (12 <= currentHour < 18) {
@@ -16,7 +15,6 @@ if(currentHour < 12) {
 } else if (18 <= currentHour) {
     $("#greeting").text('good evening')
 }
-
 
 // add dates to tracker
 const dayOfWeek = dt.weekday;
@@ -39,6 +37,28 @@ if(dayOfWeek === 1) {
     console.log('something is wrong :(')
 }
 
+// add new habit
+const addHabit = () =>  {
+    let tableRowEl = $("<tr>");
+    let tableRowHeaderEl = $("<th>").attr('scope', 'row');
+    tableRowEl.append(tableRowHeaderEl);
+    for(let i=0; i < 8; i++) {
+        const tableDataEl = $("<td>").addClass('text-center');
+        const inputEl = $("<input>").addClass('form-check-input').attr('type', 'checkbox').attr('id', 'flexCheckDefault');
+        tableDataEl.append(inputEl);
+        tableRowHeaderEl.append(tableDataEl);
+    }
+};
+
+// edit habit
+
+// delete habit
+
 // copywrite
 const currentYear = dt.year;
 $("#copywrite").text(currentYear);
+
+// event listeners
+$("#add-btn").on('click', function() {
+    addHabit()
+})
