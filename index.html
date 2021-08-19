@@ -4,9 +4,143 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habit Tracker</title>
+    <title>habit tracker.</title>
+    <link rel="stylesheet" href="./assets/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 <body>
-    
+    <header class="sticky-top">
+        <h1 class="text-center">habit tracker.</h1>
+    </header>
+    <main class='container'>
+        <!-- greeting -->
+        <h5 class="text-center">good morning, sydney!</h5>
+        <!-- goal -->
+        <!-- habit tracker -->
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope='col'>Task</th>
+                        <th scope='col'>Mon: </th>
+                        <th scope='col'>Tue: </th>
+                        <th scope='col'>Wed: </th>
+                        <th scope='col'>Thu: </th>
+                        <th scope='col'>Fri: </th>
+                        <th scope='col'>Sat: </th>
+                        <th scope='col'>Sun: </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Morning Routine</th>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Exercise</th>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Dog Training</th>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Water</th>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Cleaning</th>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Music</th>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Meditation</th>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Languages</th>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Reading</th>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Night Routine</th>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- stats -->
+    </main>
+    <footer class="fixed-bottom">
+        <h6 class="text-center">sydney walcoff.</h6>
+    </footer>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="./app.js"></script>
 </html>
