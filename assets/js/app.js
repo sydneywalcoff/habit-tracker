@@ -17,3 +17,7 @@ if(currentHour < 12) {
 } else if (18 <= currentHour) {
     $("#greeting").text('good evening')
 }
+
+// copywrite
+const currentYear = dt.year;
+$("#copywrite").text(currentYear);
