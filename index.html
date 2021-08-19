@@ -5,16 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>habit tracker.</title>
-    <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 <body>
-    <header class="sticky-top my-4">
+    <header class="sticky-top my-3">
         <h1 class="text-center">habit tracker.</h1>
     </header>
     <main class='container'>
         <!-- greeting -->
-        <h5 class="text-center">good morning, sydney!</h5>
+        <h5 class="text-center"><span id="greeting"></span>, sydney!</h5>
+        <h6 class="text-center">today is <span id="currentDay"></span>.</h6>
         <!-- goal -->
         <!-- habit tracker -->
         <div>
@@ -142,6 +143,7 @@
     </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-<script src="./assets/js/app.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="./assets/js/luxon.js"></script>
+<script src="./assets/js/app.js"></script>
 </html>
