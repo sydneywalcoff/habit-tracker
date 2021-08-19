@@ -9,7 +9,6 @@ $("#currentDay").text(weekDay)
 
 // update greeting
 const currentHour = dt.hour;
-console.log(currentHour)
 
 if(currentHour < 12) {
     $("#greeting").text('good morning')
