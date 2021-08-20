@@ -37,19 +37,10 @@ if(dayOfWeek === 1) {
     console.log('something is wrong :(')
 }
 
-const addHabit = () => {
-    // add text box
-    const textBoxEl = $("<textarea>").addClass("my-1 col-4 mx-auto");
-    const buttonDivEl = $("#buttonDiv").addClass("mb-3 flex-column").empty();
-    buttonDivEl.append(textBoxEl);
-    // add save button
-    const saveButton = $("<button>").text('save.').addClass("btn btn-dark mx-auto col-4");
-    buttonDivEl.append(saveButton);
-    // new habit var >> saveHabit()
-};
 
 // save new habit
 const saveHabit = () =>  {
+    const newHabit = $("textarea").val();
     let tableRowEl = $("<tr>");
     let tableRowHeaderEl = $("<th>").attr('scope', 'row');
     tableRowEl.append(tableRowHeaderEl);
@@ -59,6 +50,17 @@ const saveHabit = () =>  {
         tableDataEl.append(inputEl);
         tableRowHeaderEl.append(tableDataEl);
     }
+};
+
+const addHabit = () => {
+    // add text box
+    const textBoxEl = $("<textarea>").addClass("my-1 col-4 mx-auto");
+    const buttonDivEl = $("#buttonDiv").addClass("mb-3 flex-column").empty();
+    buttonDivEl.append(textBoxEl);
+    // add save button
+    const saveButton = $("<button>").text('save.').addClass("btn btn-dark mx-auto col-4").attr('id', 'saveButton');
+    buttonDivEl.append(saveButton);
+    $("#saveButton").on("click", saveHabit);
 };
 
 // edit habit
