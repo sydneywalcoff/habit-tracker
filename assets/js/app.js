@@ -50,10 +50,10 @@ const addActionButtons = () => {
 
 
 // save new habit
-const saveHabit = () =>  {
+const addNewHabit = () =>  {
     const newHabit = $("textarea").val();
     let tableRowEl = $("<tr>");
-    let tableRowHeaderEl = $("<th>").attr('scope', 'row').text(newHabit);
+    let tableRowHeaderEl = $("<th>").attr('scope', 'row').text(newHabit+':');
     tableRowEl.append(tableRowHeaderEl);
     for(let i=0; i < 7; i++) {
         const tableDataEl = $("<td>").addClass('text-center');
@@ -74,12 +74,22 @@ const addHabitTextEl = () => {
     // add save button
     const saveButton = $("<button>").text('save.').addClass("btn btn-dark mx-auto col-4").attr('id', 'saveButton');
     buttonDivEl.append(saveButton);
-    $("#saveButton").on("click", saveHabit);
+    $("#saveButton").on("click", addNewHabit);
 };
 
 // edit habit
 const editHabit = () => {
-
+    // action buttons replaced by save button
+    buttonDivEl.empty();
+    const saveButton = $("<button>").text('save.').addClass("btn btn-dark mx-auto col-4").attr('id', 'saveButton');
+    buttonDivEl.append(saveButton);
+    const habitsArray = $('tbody tr th').text().split(':');
+    const textInput = $('<input>').attr('type', 'text').addClass('p-1');
+    const habits = $('tbody tr th').replaceWith(textInput);
+    for(let i =0; i < habits.length; i++) {
+        const currentHabit = habitsArray[i];
+        console.log(currentHabitEl);
+    }
 };
 
 // delete habit
@@ -91,4 +101,6 @@ $("#copywrite").text(currentYear);
 // event listeners
 $("#add-btn").on('click', function() {
     addHabitTextEl()
-})
+});
+
+$("#edit-btn").on('click', editHabit);
