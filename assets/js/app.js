@@ -37,6 +37,17 @@ if(dayOfWeek === 1) {
     console.log('something is wrong :(')
 }
 
+const buttonDivEl = $("#buttonDiv");
+
+const addActionButtons = () => {
+    buttonDivEl.empty();
+    buttonDivEl.removeClass(['mb-3', 'flex-column']);
+    const addBtn = $("<button>").addClass("btn btn-dark mx-1").text('add.').attr('id', 'add-btn');
+    const editBtn = $("<button>").addClass("btn btn-dark mx-1").text('edit.').attr('id', 'edit-btn');
+    const deleteBtn = $("<button>").addClass("btn btn-dark mx-1").text('delete.').attr('id', 'delete-btn');
+    buttonDivEl.append(addBtn, editBtn, deleteBtn);
+};
+
 
 // save new habit
 const saveHabit = () =>  {
@@ -51,12 +62,14 @@ const saveHabit = () =>  {
         tableRowEl.append(tableDataEl);
     }
     $("tbody").append(tableRowEl);
+    // readd buttons
+    addActionButtons();
 };
 
-const addHabit = () => {
+const addHabitTextEl = () => {
     // add text box
     const textBoxEl = $("<textarea>").addClass("my-1 col-4 mx-auto");
-    const buttonDivEl = $("#buttonDiv").addClass("mb-3 flex-column").empty();
+    buttonDivEl.addClass("mb-3 flex-column").empty();
     buttonDivEl.append(textBoxEl);
     // add save button
     const saveButton = $("<button>").text('save.').addClass("btn btn-dark mx-auto col-4").attr('id', 'saveButton');
@@ -65,6 +78,9 @@ const addHabit = () => {
 };
 
 // edit habit
+const editHabit = () => {
+
+};
 
 // delete habit
 
@@ -74,5 +90,5 @@ $("#copywrite").text(currentYear);
 
 // event listeners
 $("#add-btn").on('click', function() {
-    addHabit()
+    addHabitTextEl()
 })
