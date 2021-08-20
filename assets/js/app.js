@@ -42,14 +42,15 @@ if(dayOfWeek === 1) {
 const saveHabit = () =>  {
     const newHabit = $("textarea").val();
     let tableRowEl = $("<tr>");
-    let tableRowHeaderEl = $("<th>").attr('scope', 'row');
+    let tableRowHeaderEl = $("<th>").attr('scope', 'row').text(newHabit);
     tableRowEl.append(tableRowHeaderEl);
-    for(let i=0; i < 8; i++) {
+    for(let i=0; i < 7; i++) {
         const tableDataEl = $("<td>").addClass('text-center');
         const inputEl = $("<input>").addClass('form-check-input').attr('type', 'checkbox').attr('id', 'flexCheckDefault');
         tableDataEl.append(inputEl);
-        tableRowHeaderEl.append(tableDataEl);
+        tableRowEl.append(tableDataEl);
     }
+    $("tbody").append(tableRowEl);
 };
 
 const addHabit = () => {
