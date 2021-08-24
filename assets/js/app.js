@@ -72,7 +72,7 @@ const addHabitTextEl = () => {
     buttonDivEl.addClass("mb-3 flex-column").empty();
     buttonDivEl.append(textBoxEl);
     // add save button
-    const saveButton = $("<button>").text('save.').addClass("btn btn-dark mx-auto col-4").attr('id', 'saveButton');
+    const saveButton = $("<button>").text('save.').addClass("btn btn-outline-dark mx-auto col-4").attr('id', 'saveButton');
     buttonDivEl.append(saveButton);
     $("#saveButton").on("click", addNewHabit);
 };
@@ -81,14 +81,16 @@ const addHabitTextEl = () => {
 const editHabit = () => {
     // action buttons replaced by save button
     buttonDivEl.empty();
-    const saveButton = $("<button>").text('save.').addClass("btn btn-dark mx-auto col-4").attr('id', 'saveButton');
+    const saveButton = $("<button>").text('save.').addClass("btn btn-outline-dark mx-auto col-4").attr('id', 'saveButton');
     buttonDivEl.append(saveButton);
-    const habitsArray = $('tbody tr th').text().split(':');
-    const textInput = $('<input>').attr('type', 'text').addClass('p-1');
-    const habits = $('tbody tr th').replaceWith(textInput);
-    for(let i =0; i < habits.length; i++) {
+    const habitsElArray = $('tbody tr th');
+    const habitsArray = habitsElArray.text().split(':');
+    habitsArray.pop();
+    for(let i =0; i < habitsArray.length; i++) {
         const currentHabit = habitsArray[i];
-        console.log(currentHabitEl);
+        const textInputEl = $('<input>').attr('type', 'text').addClass('p-1').attr('placeholder', currentHabit);
+        $(habitsElArray[i]).replaceWith(textInputEl);
+
     }
 };
 
