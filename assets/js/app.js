@@ -1,43 +1,5 @@
-// initialize luxon
-const DateTime = luxon.DateTime;
-
-// grab currentDay
-const dt = DateTime.local();
-const weekDay = dt.weekdayLong.toLowerCase();
-$("#currentDay").text(weekDay);
-
-// update greeting
-const currentHour = dt.hour;
-if(currentHour < 12) {
-    $("#greeting").text('good morning')
-} else if (12 <= currentHour < 18) {
-    $("#greeting").text('good afternoon')
-} else if (18 <= currentHour) {
-    $("#greeting").text('good evening')
-}
-
-// add dates to tracker
-const dayOfWeek = dt.weekday;
-const month = dt.month;
-const day = dt.day;
-if(dayOfWeek === 1) {
-    $("#1").text(`${month}/${day}`)
-    $("#2").text(`${month}/${day+1}`)
-    $("#3").text(`${month}/${day+2}`)
-    $("#4").text(`${month}/${day+3}`)
-    $("#5").text(`${month}/${day+4}`)
-    $("#6").text(`${month}/${day+5}`)
-    $("#7").text(`${month}/${day+6}`)
-} else if (dayOfWeek !== 1) {
-    for(let i =1; i < 8; i++ ){
-        const difference = dayOfWeek - i;
-        $("#"+ i).text(`${month}/${day - difference}`)
-    }
-} else {
-    console.log('something is wrong :(')
-}
-
 const buttonDivEl = $("#buttonDiv");
+const habitsElArray = $('tbody tr th');
 
 const addActionButtons = () => {
     buttonDivEl.empty();
@@ -72,27 +34,43 @@ const addHabitTextEl = () => {
     buttonDivEl.addClass("mb-3 flex-column").empty();
     buttonDivEl.append(textBoxEl);
     // add save button
-    const saveButton = $("<button>").text('save.').addClass("btn btn-outline-dark mx-auto col-4").attr('id', 'saveButton');
+    const saveButton = $("<button>").text('save.').addClass("btn btn-outline-dark mx-auto col-4").attr('id', 'save-add-button');
     buttonDivEl.append(saveButton);
-    $("#saveButton").on("click", addNewHabit);
+    $("#save-add-button").on("click", addNewHabit);
 };
+
+// save habit
+const saveHabit = () => {
+    const habits = habitsElArray;
+    const habitsInput = $('.habit-input');
+    // if text input replace text
+    for(let i=0; i < habits.length; i++) {
+        const newHabit = habitsInput[i].value;
+        if(newHabit.length > 0) {
+            console.log(newHabit, i)
+        }
+    }
+    // replace save button with add/edit/delete buttons
+    addActionButtons();
+}
 
 // edit habit
 const editHabit = () => {
     // action buttons replaced by save button
     buttonDivEl.empty();
-    const saveButton = $("<button>").text('save.').addClass("btn btn-outline-dark mx-auto col-4").attr('id', 'saveButton');
+    const saveButton = $("<button>").text('save.').addClass("btn btn-outline-dark mx-auto col-4").attr('id', 'save-edit-button');
     buttonDivEl.append(saveButton);
-    const habitsElArray = $('tbody tr th');
     const habitsArray = habitsElArray.text().split(':');
     habitsArray.pop();
     for(let i =0; i < habitsArray.length; i++) {
         const currentHabit = habitsArray[i];
-        const textInputEl = $('<input>').attr('type', 'text').addClass('p-1').attr('placeholder', currentHabit);
+        const textInputEl = $('<input>').attr('type', 'text').addClass('p-1 habit-input').attr('placeholder', currentHabit);
         $(habitsElArray[i]).replaceWith(textInputEl);
-
+        
     }
+    $("#save-edit-button").on('click', saveHabit);
 };
+
 
 // delete habit
 
