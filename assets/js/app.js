@@ -42,13 +42,21 @@ const addHabitTextEl = () => {
 // save habit
 const saveHabit = () => {
     const habits = habitsElArray;
-    const habitsInput = $('.habit-input');
+    const habitsInputEl = $('.habit-input');
     // if text input replace text
     for(let i=0; i < habits.length; i++) {
-        const newHabit = habitsInput[i].value;
+        const newHabit = habitsInputEl[i].value;
+        let oldHabit = habitsInputEl[i].placeholder;
+        const habitTextEl = $('<th>').attr('scope', 'row').text(newHabit);
         if(newHabit.length > 0) {
-            console.log(newHabit, i)
+            // replace old habit with new habit
+            console.log('oldHabit', oldHabit, 'newHabit', newHabit)
+            if(oldHabit !== newHabit) {
+                $(habitsInputEl[i]).replaceWith(habitTextEl.text(newHabit));
+                return;
+            }
         }
+        $(habitsInputEl[i]).replaceWith(habitTextEl.text(oldHabit));
     }
     // replace save button with add/edit/delete buttons
     addActionButtons();
