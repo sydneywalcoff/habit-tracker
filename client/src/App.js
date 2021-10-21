@@ -13,6 +13,7 @@ function App() {
         <Greeting/>
         <Tracker/>
       </div>
+      {/* < Footer /> */}
     </>
   );
 }
