@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/Header';
 import Greeting from './components/Greeting'
 import Tracker from './components/Tracker'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Greeting/>
         <Tracker/>
       </div>
-      {/* < Footer /> */}
+      < Footer />
     </>
   );
 }

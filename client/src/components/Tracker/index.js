@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 
 const Tracker = () => {
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -21,8 +20,8 @@ const Tracker = () => {
                     {habits.map(habit =>
                         <tr>
                             <th scope="row">{habit}:</th>
-                            {daysOfTheWeek.map(day =>
-                                <td className="text-center"><input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></td>
+                            {daysOfTheWeek.map((day,i) =>
+                                <td className="text-center"><input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" key ={i}/></td>
                             )}
                         </tr>
                     )}  
