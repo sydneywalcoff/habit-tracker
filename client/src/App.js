@@ -3,6 +3,7 @@ import './App.css';
 // components
 import Header from './components/Header';
 import Greeting from './components/Greeting'
+import Tracker from './components/Tracker'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       < Header />
       <div className = "main">
         <Greeting/>
+        <Tracker/>
       </div>
     </>
   );
