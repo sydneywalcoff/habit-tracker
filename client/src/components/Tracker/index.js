@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 import { DateTime } from 'luxon';
 import $ from 'jquery';
 
@@ -8,13 +8,21 @@ const Tracker = () => {
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const habits = ['Morning Routine', 'Exercise', 'Dog Training', 'Water', 'Cleaning', 'Music', 'Meditation', 'Languages', 'Reading', 'Night Routine'];
 
-    const addButtons = () => {
-
+    const dayOfWeek = DateTime.local().weekday;
+    const month = DateTime.local().month;
+    const date = DateTime.local().day;
+    
+    const addActionButtons = () => {        
         const addButtonHandler = () => {
-            $('#buttonDiv').empty();
+            // clear buttonDiv and replace with text box and button
+            const buttonDiv = $('#buttonDiv');
+            const textBox = $('<textarea>');
+            buttonDiv.empty();
+            buttonDiv.append(textBox);
+            const saveButton = $('<button>').addClass('btn btn-outline-dark mx-1').text('save.');
+            buttonDiv.append(saveButton);
             
         };
-
         return (
             <>
                 <Button variant="outline-dark" className="mx-1" id="add-btn" onClick = {addButtonHandler}>add.</Button>
@@ -24,10 +32,6 @@ const Tracker = () => {
         );
 
     };
-
-    const dayOfWeek = DateTime.local().weekday;
-    const month = DateTime.local().month;
-    const date = DateTime.local().day;
 
 
 
@@ -54,7 +58,7 @@ const Tracker = () => {
                 </tbody>
             </table>
             <div id="buttonDiv" className="d-flex justify-content-center my-4">
-                {addButtons()}
+                {addActionButtons()}
             </div>
         </>
     );
