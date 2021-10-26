@@ -1,5 +1,4 @@
 import React from 'react';
-// import { luxon } from '../../assets/luxon'
 import $ from 'jquery'
 import { DateTime } from 'luxon';
 

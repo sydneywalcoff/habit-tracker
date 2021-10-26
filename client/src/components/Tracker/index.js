@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap'
 import { DateTime } from 'luxon';
-// import $ from 'jquery';
 
 
 const Tracker = () => {
     const [buttonState, setButtonState] = useState('');
     const [value, setValueState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    const habits = ['Morning Routine', 'Exercise', 'Dog Training', 'Water', 'Cleaning', 'Music', 'Meditation', 'Languages', 'Reading', 'Night Routine'];
+    const [habits, setHabitsState] = useState(['Morning Routine', 'Exercise', 'Dog Training', 'Water', 'Cleaning', 'Music', 'Meditation', 'Languages', 'Reading', 'Night Routine']);
 
     const dayOfWeek = DateTime.local().weekday;
     const month = DateTime.local().month;
@@ -17,7 +16,6 @@ const Tracker = () => {
     const buttonHandler = () => {
         const handleChange = (e) => {
             setValueState(e.target.value)
-            console.log(value)
         };
 
         const addButtonHandler = () => {
@@ -26,6 +24,8 @@ const Tracker = () => {
 
         const saveButtonHandler = () => {
             habits.push(value)
+
+            setButtonState('');
         };
 
         if (buttonState === 'add') {
