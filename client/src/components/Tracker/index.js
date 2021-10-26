@@ -1,31 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap'
 import { DateTime } from 'luxon';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 
 const Tracker = () => {
+    const [buttonState, setButtonState] = useState('');
+    const [value, setValueState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const habits = ['Morning Routine', 'Exercise', 'Dog Training', 'Water', 'Cleaning', 'Music', 'Meditation', 'Languages', 'Reading', 'Night Routine'];
 
     const dayOfWeek = DateTime.local().weekday;
     const month = DateTime.local().month;
     const date = DateTime.local().day;
-    
-    const addActionButtons = () => {        
-        const addButtonHandler = () => {
-            // clear buttonDiv and replace with text box and button
-            const buttonDiv = $('#buttonDiv');
-            const textBox = $('<textarea>');
-            buttonDiv.empty();
-            buttonDiv.append(textBox);
-            const saveButton = $('<button>').addClass('btn btn-outline-dark mx-1').text('save.');
-            buttonDiv.append(saveButton);
-            
+
+    const buttonHandler = () => {
+        const handleChange = (e) => {
+            setValueState(e.target.value)
+            console.log(value)
         };
+
+        const addButtonHandler = () => {
+            setButtonState('add');
+        };
+
+        const saveButtonHandler = () => {
+            habits.push(value)
+        };
+
+        if (buttonState === 'add') {
+            return (
+                <>
+                    <Form>
+                        <Form.Group>
+                            <Form.Control as="textarea" rows={2} onChange={handleChange}/>
+                        </Form.Group>
+                    </Form>
+                    <Button variant="outline-dark" className="mx-1" id="save-btn" onClick={saveButtonHandler}>save.</Button>
+                </>
+            );
+        }
         return (
             <>
-                <Button variant="outline-dark" className="mx-1" id="add-btn" onClick = {addButtonHandler}>add.</Button>
+                <Button variant="outline-dark" className="mx-1" id="add-btn" onClick={addButtonHandler}>add.</Button>
                 <Button variant="outline-dark" className="btn btn-outline-dark mx-1" id="edit-btn" >edit.</Button>
                 <Button variant="outline-dark" className="btn btn-outline-dark mx-1" id="delete-btn">delete.</Button>
             </>
@@ -58,7 +75,7 @@ const Tracker = () => {
                 </tbody>
             </table>
             <div id="buttonDiv" className="d-flex justify-content-center my-4">
-                {addActionButtons()}
+                {buttonHandler()}
             </div>
         </>
     );
