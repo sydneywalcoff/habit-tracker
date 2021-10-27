@@ -7,6 +7,7 @@ const Tracker = () => {
     const [buttonState, setButtonState] = useState('');
     const [formValue, setFormValueState] = useState('');
     const [formState, setFormState] = useState('');
+    const [editValueState, setEditValueState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const [habits, setHabitsState] = useState(['Morning Routine', 'Exercise', 'Dog Training', 'Water', 'Cleaning', 'Music', 'Meditation', 'Languages', 'Reading', 'Night Routine']);
 
@@ -42,7 +43,9 @@ const Tracker = () => {
 
         const saveButtonHandler = () => {
             if (buttonState === 'add') {
-                habits.push(formValue)
+                let tempArr = [...habits];
+                tempArr.push(formValue)
+                setHabitsState(tempArr)
             }
             if (buttonState === 'edit') {
                 setFormState('');
