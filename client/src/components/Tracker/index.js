@@ -150,7 +150,6 @@ const Tracker = () => {
                     {habits.map((habit, i) =>
                         <tr key={i}>
                             <th scope="row">{habit}:</th>
-                            { }
                             {daysOfTheWeek.map((day, i) =>
                                 <td className="text-center" key={i}><input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></td>
                             )}
@@ -166,7 +165,7 @@ const Tracker = () => {
             <table className="table">
                 <thead>
                     <tr>
-                        <th scope='col'>Task:</th>
+                        <th scope='col'>Habit:</th>
                         {daysOfTheWeek.map((day, i) =>
                             <th scope='col' className="text-center" key={i}>{day}: <span id={i + 1}>{dayOfWeek === 1 ? `${month}/ ${date - i}` : `${month}/ ${date - dayOfWeek + 1 + i}`}</span></th>
                         )}
