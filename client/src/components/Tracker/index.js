@@ -8,7 +8,7 @@ const Tracker = () => {
     const [formValue, setFormValueState] = useState('');
     const [formState, setFormState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    const [habits] = useState(['Morning Routine', 'Exercise', 'Dog Training', 'Water', 'Cleaning', 'Music', 'Meditation', 'Languages', 'Reading', 'Night Routine']);
+    const [habits, setHabitsState] = useState(['Morning Routine', 'Exercise', 'Dog Training', 'Water', 'Cleaning', 'Music', 'Meditation', 'Languages', 'Reading', 'Night Routine']);
 
     const dayOfWeek = DateTime.local().weekday;
     const month = DateTime.local().month;
@@ -19,8 +19,13 @@ const Tracker = () => {
             setFormValueState(e.target.value)
         }
         if (buttonState === 'edit') {
-            const oldValue =
-                console.log(e.target.id)
+            const newValue = e.target.value;
+            const oldValue = e.target.attributes.habit.textContent;
+
+            const arrInd = habits.findIndex(el => el === oldValue);
+            let tempArr = [...habits];
+            tempArr[arrInd] = newValue;
+            setHabitsState(tempArr)
         }
     };
 
@@ -85,13 +90,14 @@ const Tracker = () => {
                     </tr>
                 </thead>
                 {formState ? (
+                    // edit a habit
                     <tbody>
                         {habits.map((habit, i) =>
                             <tr key={i}>
-                                <th scope="row">
-                                    <Form id={i}>
-                                        <Form.Group id={i}>
-                                            <Form.Control type="text" placeholder={habit} onChange={handleChange} id={i} />
+                                <th scope="row" id={i}>
+                                    <Form>
+                                        <Form.Group>
+                                            <Form.Control type="text" placeholder={habit} onChange={handleChange} habit={habit} />
                                         </Form.Group>
                                     </Form>
                                 </th>
@@ -102,6 +108,7 @@ const Tracker = () => {
                         )}
                     </tbody>
                 ) : (
+                    // basic tracker
                     <tbody>
                         {habits.map((habit, i) =>
                             <tr key={i}>
