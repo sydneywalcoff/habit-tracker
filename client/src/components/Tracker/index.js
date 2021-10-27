@@ -7,7 +7,6 @@ const Tracker = () => {
     const [buttonState, setButtonState] = useState('');
     const [formValue, setFormValueState] = useState('');
     const [formState, setFormState] = useState('');
-    const [editValueState, setEditValueState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const [habits, setHabitsState] = useState(['Morning Routine', 'Exercise', 'Dog Training', 'Water', 'Cleaning', 'Music', 'Meditation', 'Languages', 'Reading', 'Night Routine']);
 
@@ -41,6 +40,11 @@ const Tracker = () => {
             setFormState('edit');
         };
 
+        const deleteButtonHandler = () => {
+            setFormState('delete');
+            setButtonState('delete');
+        };
+
         const saveButtonHandler = () => {
             if (buttonState === 'add') {
                 let tempArr = [...habits];
@@ -50,9 +54,16 @@ const Tracker = () => {
             if (buttonState === 'edit') {
                 setFormState('');
             }
+            if(buttonState === 'delete') {
+
+            }
             setButtonState('');
         };
 
+        const doneHandler = () => {
+            setButtonState('');
+            setFormState('');
+        };
 
         if (buttonState === 'add') {
             return (
@@ -69,17 +80,86 @@ const Tracker = () => {
             return (
                 <Button variant="outline-dark" className="mx-1" id="save-btn" onClick={saveButtonHandler}>save.</Button>
             );
+        } else if (buttonState === 'delete') {
+            return (
+                <Button variant="outline-dark" className="mx-1" onClick={doneHandler}>done.</Button>
+            );
         }
 
         return (
             <>
                 <Button variant="outline-dark" className="mx-1" id="add-btn" onClick={addButtonHandler}>add.</Button>
                 <Button variant="outline-dark" className="btn btn-outline-dark mx-1" id="edit-btn" onClick={editButtonHandler}>edit.</Button>
-                <Button variant="outline-dark" className="btn btn-outline-dark mx-1" id="delete-btn">delete.</Button>
+                <Button variant="outline-dark" className="btn btn-outline-dark mx-1" onClick={deleteButtonHandler}>delete.</Button>
             </>
         );
 
     };
+
+    const tableBodyHandler = () => {
+        if (formState === 'edit') {
+            return (
+                <tbody>
+                    {habits.map((habit, i) =>
+                        <tr key={i}>
+                            <th scope="row" id={i}>
+                                <Form>
+                                    <Form.Group>
+                                        <Form.Control type="text" placeholder={habit} onChange={handleChange} habit={habit} />
+                                    </Form.Group>
+                                </Form>
+                            </th>
+                            {daysOfTheWeek.map((day, i) =>
+                                <td className="text-center" key={i}><input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></td>
+                            )}
+                        </tr>
+                    )}
+                </tbody>
+            );
+        }
+
+        if(formState === 'delete') {
+            const deleteHabit = (e) => {
+                const index = parseInt(e.target.attributes.i.textContent);
+                const tempArr = [...habits];
+                tempArr.splice(index,1);
+                setHabitsState(tempArr);
+
+            };
+            return (
+                <tbody>
+                    {habits.map((habit, i) =>
+                        <tr key={i}>
+                            <th scope="row" className="d-flex justify-content-between">
+                                {habit}: 
+                                <Button variant="outline-dark" className="btn btn-outline-dark" onClick={deleteHabit} i={i}>delete.</Button>
+                            </th>
+                            
+                            {daysOfTheWeek.map((day, i) =>
+                                <td className="text-center" key={i}><input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></td>
+                            )}
+                        </tr>
+                    )}
+                </tbody>
+            );
+        }
+
+        if (formState === '') {
+            return (
+                <tbody>
+                    {habits.map((habit, i) =>
+                        <tr key={i}>
+                            <th scope="row">{habit}:</th>
+                            { }
+                            {daysOfTheWeek.map((day, i) =>
+                                <td className="text-center" key={i}><input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></td>
+                            )}
+                        </tr>
+                    )}
+                </tbody>
+            );
+        }
+    }
 
     return (
         <>
@@ -92,37 +172,7 @@ const Tracker = () => {
                         )}
                     </tr>
                 </thead>
-                {formState ? (
-                    // edit a habit
-                    <tbody>
-                        {habits.map((habit, i) =>
-                            <tr key={i}>
-                                <th scope="row" id={i}>
-                                    <Form>
-                                        <Form.Group>
-                                            <Form.Control type="text" placeholder={habit} onChange={handleChange} habit={habit} />
-                                        </Form.Group>
-                                    </Form>
-                                </th>
-                                {daysOfTheWeek.map((day, i) =>
-                                    <td className="text-center" key={i}><input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></td>
-                                )}
-                            </tr>
-                        )}
-                    </tbody>
-                ) : (
-                    // basic tracker
-                    <tbody>
-                        {habits.map((habit, i) =>
-                            <tr key={i}>
-                                <th scope="row">{habit}:</th>
-                                {daysOfTheWeek.map((day, i) =>
-                                    <td className="text-center" key={i}><input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></td>
-                                )}
-                            </tr>
-                        )}
-                    </tbody>
-                )}
+                {tableBodyHandler()}
             </table>
             <div id="buttonDiv" className="d-flex justify-content-center my-4">
                 {buttonHandler()}
