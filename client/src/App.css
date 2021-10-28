@@ -13,3 +13,7 @@ h6 {
 #currentDay {
     font-family: 'STIX Two Text', serif;
 } 
+
+#buttonDiv {
+    margin: 0 auto;
+}

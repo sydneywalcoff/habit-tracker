@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import { getHabits, saveHabits } from '../../utils/localStorage';
 
 const Tracker = () => {
-    const [buttonState, setButtonState] = useState('');
+    const [buttonState, setButtonState] = useState('add');
     const [formValue, setFormValueState] = useState('');
     const [formState, setFormState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
@@ -56,7 +56,7 @@ const Tracker = () => {
             if (buttonState === 'edit') {
                 setFormState('');
             }
-            if(buttonState === 'delete') {
+            if (buttonState === 'delete') {
 
             }
             setButtonState('');
@@ -120,23 +120,26 @@ const Tracker = () => {
             );
         }
 
-        if(formState === 'delete') {
+        if (formState === 'delete') {
             const deleteHabit = (e) => {
                 const index = parseInt(e.target.attributes.i.textContent);
                 const tempArr = [...habits];
-                tempArr.splice(index,1);
+                tempArr.splice(index, 1);
                 setHabitsState(tempArr);
                 saveHabits(tempArr);
+                if(habits.length === 0) {
+                    setButtonState('add')
+                }
             };
             return (
                 <tbody>
                     {habits.map((habit, i) =>
                         <tr key={i}>
                             <th scope="row" className="d-flex justify-content-between">
-                                {habit}: 
+                                {habit}:
                                 <Button variant="outline-dark" className="btn btn-outline-dark" onClick={deleteHabit} i={i}>delete.</Button>
                             </th>
-                            
+
                             {daysOfTheWeek.map((day, i) =>
                                 <td className="text-center" key={i}><input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" /></td>
                             )}
@@ -175,8 +178,18 @@ const Tracker = () => {
                 </thead>
                 {tableBodyHandler()}
             </table>
-            <div id="buttonDiv" className="d-flex justify-content-center my-4">
-                {buttonHandler()}
+            <div id="buttonDiv" className="container justify-content-center w-25">
+                {habits.length === 0 && (
+                    <div class="row">
+                        <p className="text-center">You haven't added any habits yet :(</p>
+                    </div>
+                )}
+                <div className="row">
+                    {/* <div className="col"> */}
+                    {buttonHandler()}
+                    {/* </div> */}
+                </div>
+
             </div>
         </>
     );
