@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap'
 import { DateTime } from 'luxon';
-
+import { getHabits, saveHabits } from '../../utils/localStorage';
 
 const Tracker = () => {
     const [buttonState, setButtonState] = useState('');
     const [formValue, setFormValueState] = useState('');
     const [formState, setFormState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    const [habits, setHabitsState] = useState(['Morning Routine', 'Exercise', 'Dog Training', 'Water', 'Cleaning', 'Music', 'Meditation', 'Languages', 'Reading', 'Night Routine']);
+    const [habits, setHabitsState] = useState(getHabits());
 
     const dayOfWeek = DateTime.local().weekday;
     const month = DateTime.local().month;
@@ -25,7 +25,8 @@ const Tracker = () => {
             const arrInd = habits.findIndex(el => el === oldValue);
             let tempArr = [...habits];
             tempArr[arrInd] = newValue;
-            setHabitsState(tempArr)
+            setHabitsState(tempArr);
+            saveHabits(tempArr);
         }
     };
 
@@ -50,6 +51,7 @@ const Tracker = () => {
                 let tempArr = [...habits];
                 tempArr.push(formValue)
                 setHabitsState(tempArr)
+                saveHabits(tempArr);
             }
             if (buttonState === 'edit') {
                 setFormState('');
@@ -124,7 +126,7 @@ const Tracker = () => {
                 const tempArr = [...habits];
                 tempArr.splice(index,1);
                 setHabitsState(tempArr);
-
+                saveHabits(tempArr);
             };
             return (
                 <tbody>
