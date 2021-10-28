@@ -127,7 +127,7 @@ const Tracker = () => {
                 tempArr.splice(index, 1);
                 setHabitsState(tempArr);
                 saveHabits(tempArr);
-                if(habits.length === 0) {
+                if(tempArr.length === 0) {
                     setButtonState('add')
                 }
             };
@@ -180,7 +180,7 @@ const Tracker = () => {
             </table>
             <div id="buttonDiv" className="container justify-content-center w-25">
                 {habits.length === 0 && (
-                    <div class="row">
+                    <div className="row">
                         <p className="text-center">You haven't added any habits yet :(</p>
                     </div>
                 )}
