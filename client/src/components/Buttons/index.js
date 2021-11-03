@@ -1,14 +1,16 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const Buttons = ({ buttonState, setButtonState, setFormState, handleChange }) => {
+const Buttons = ({ buttonState, setButtonState, formState, setFormState, handleChange }) => {
+    console.log(buttonState);
+    console.log(formState)
     const addButtonHandler = () => {
         setButtonState('add');
     };
 
     const editButtonHandler = () => {
         setButtonState('edit');
-        setFormState('edit');
+        // setFormState('edit');
     };
 
     const deleteButtonHandler = () => {
