@@ -56,7 +56,7 @@ const Tracker = () => {
             <div id="buttonDiv" className="container justify-content-center w-25">
                 {habits.length === 0 && (
                     <div className="row">
-                        <p className="text-center">You haven't added any habits yet :(</p>
+                        <p className="text-center my-5">You haven't added any habits yet :(</p>
                     </div>
                 )}
                 <div className="row">

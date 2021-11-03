@@ -26,9 +26,6 @@ const Buttons = ({ buttonState, setButtonState, setFormState, handleChange, habi
         if (buttonState === 'edit') {
             setFormState('');
         }
-        if (buttonState === 'delete') {
-
-        }
         setButtonState('');
     };
 
