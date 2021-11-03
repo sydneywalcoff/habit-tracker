@@ -24,8 +24,8 @@ const Buttons = ({ buttonState, setButtonState, setFormState, handleChange, habi
             saveHabits(tempArr);
         }
         if (buttonState === 'edit') {
-            setFormState('');
         }
+        setFormState('');
         setButtonState('');
     };
 

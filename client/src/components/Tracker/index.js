@@ -18,7 +18,6 @@ const Tracker = () => {
     const handleChange = (e) => {
         if (buttonState === 'add') {
             setFormValueState(e.target.value)
-            console.log(formValue)
         }
         if (buttonState === 'edit') {
             const newValue = e.target.value;
