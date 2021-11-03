@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap'
 import { DateTime } from 'luxon';
 import { getHabits, saveHabits } from '../../utils/localStorage';
+import Buttons from '../Buttons';
 
 const Tracker = () => {
     const [buttonState, setButtonState] = useState('add');
@@ -13,7 +14,7 @@ const Tracker = () => {
     const dayOfWeek = DateTime.local().weekday;
     const month = DateTime.local().month;
     const date = DateTime.local().day;
-
+    
     const handleChange = (e) => {
         if (buttonState === 'add') {
             setFormValueState(e.target.value)
@@ -28,74 +29,6 @@ const Tracker = () => {
             setHabitsState(tempArr);
             saveHabits(tempArr);
         }
-    };
-
-    const buttonHandler = () => {
-
-        const addButtonHandler = () => {
-            setButtonState('add');
-        };
-
-        const editButtonHandler = () => {
-            setButtonState('edit');
-            setFormState('edit');
-        };
-
-        const deleteButtonHandler = () => {
-            setFormState('delete');
-            setButtonState('delete');
-        };
-
-        const saveButtonHandler = () => {
-            if (buttonState === 'add') {
-                let tempArr = [...habits];
-                tempArr.push(formValue)
-                setHabitsState(tempArr)
-                saveHabits(tempArr);
-            }
-            if (buttonState === 'edit') {
-                setFormState('');
-            }
-            if (buttonState === 'delete') {
-
-            }
-            setButtonState('');
-        };
-
-        const doneHandler = () => {
-            setButtonState('');
-            setFormState('');
-        };
-
-        if (buttonState === 'add') {
-            return (
-                <>
-                    <Form>
-                        <Form.Group>
-                            <Form.Control as="textarea" rows={2} onChange={handleChange} />
-                        </Form.Group>
-                    </Form>
-                    <Button variant="outline-dark" className="mx-1" id="save-btn" onClick={saveButtonHandler}>save.</Button>
-                </>
-            );
-        } else if (buttonState === 'edit') {
-            return (
-                <Button variant="outline-dark" className="mx-1" id="save-btn" onClick={saveButtonHandler}>save.</Button>
-            );
-        } else if (buttonState === 'delete') {
-            return (
-                <Button variant="outline-dark" className="mx-1" onClick={doneHandler}>done.</Button>
-            );
-        }
-
-        return (
-            <>
-                <Button variant="outline-dark" className="mx-1" id="add-btn" onClick={addButtonHandler}>add.</Button>
-                <Button variant="outline-dark" className="btn btn-outline-dark mx-1" id="edit-btn" onClick={editButtonHandler}>edit.</Button>
-                <Button variant="outline-dark" className="btn btn-outline-dark mx-1" onClick={deleteButtonHandler}>delete.</Button>
-            </>
-        );
-
     };
 
     const tableBodyHandler = () => {
@@ -185,9 +118,12 @@ const Tracker = () => {
                     </div>
                 )}
                 <div className="row">
-                    {/* <div className="col"> */}
-                    {buttonHandler()}
-                    {/* </div> */}
+                    <Buttons 
+                        buttonState={buttonState} 
+                        setButtonState={setButtonState} 
+                        setFormValueState={setFormValueState} 
+                        handleChange={handleChange}
+                    />
                 </div>
 
             </div>
