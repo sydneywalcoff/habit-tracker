@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap'
 import { DateTime } from 'luxon';
 import { getHabits, saveHabits } from '../../utils/localStorage';
 import Buttons from '../Buttons';
@@ -19,6 +18,7 @@ const Tracker = () => {
     const handleChange = (e) => {
         if (buttonState === 'add') {
             setFormValueState(e.target.value)
+            console.log(formValue)
         }
         if (buttonState === 'edit') {
             const newValue = e.target.value;
@@ -63,9 +63,12 @@ const Tracker = () => {
                     <Buttons 
                         buttonState={buttonState} 
                         setButtonState={setButtonState} 
-                        setFormValueState={setFormState} 
+                        setFormState={setFormState} 
                         handleChange={handleChange}
-                        formState={formState}
+                        formValue={formValue}
+                        habits = {habits}
+                        saveHabits={saveHabits}
+                        setHabitsState={setHabitsState}
                     />
                 </div>
 

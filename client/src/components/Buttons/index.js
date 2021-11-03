@@ -1,16 +1,14 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const Buttons = ({ buttonState, setButtonState, formState, setFormState, handleChange }) => {
-    console.log(buttonState);
-    console.log(formState)
+const Buttons = ({ buttonState, setButtonState, setFormState, handleChange, habits, formValue, setHabitsState, saveHabits }) => {
     const addButtonHandler = () => {
         setButtonState('add');
     };
 
     const editButtonHandler = () => {
         setButtonState('edit');
-        // setFormState('edit');
+        setFormState('edit');
     };
 
     const deleteButtonHandler = () => {
@@ -20,10 +18,10 @@ const Buttons = ({ buttonState, setButtonState, formState, setFormState, handleC
 
     const saveButtonHandler = () => {
         if (buttonState === 'add') {
-            // let tempArr = [...habits];
-            // tempArr.push(formValue)
-            // setHabitsState(tempArr)
-            // saveHabits(tempArr);
+            let tempArr = [...habits];
+            tempArr.push(formValue);
+            setHabitsState(tempArr)
+            saveHabits(tempArr);
         }
         if (buttonState === 'edit') {
             setFormState('');
