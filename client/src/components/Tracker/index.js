@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { getHabits, saveHabits } from '../../utils/localStorage';
-import { formatDate } from '../../utils/dateFormat'
+import { formatDate, weekNumber, year, dayOfWeek } from '../../utils/dateFormat'
 import Buttons from '../Buttons';
 import TrackerBody from '../TrackerBody';
 
@@ -27,6 +27,29 @@ const Tracker = () => {
         }
     };
 
+    const weekProgressObj = {
+        weekNumber: weekNumber,
+        dayOfWeek: dayOfWeek,
+        days: []
+    };
+    daysOfTheWeek.forEach(day => {
+        const habitArr = [];
+        const dailyObj = {
+            day: day,
+            habits: habitArr
+        };
+        habits.forEach(habit => {
+            const habitObj = {
+                habit: habit,
+                complete: false
+            };
+            // dailyObj.habits = {...dailyObj.habits, habitObj}
+            habitArr.push(habitObj)
+        })
+        weekProgressObj.days.push(dailyObj)
+    })
+    console.log(weekProgressObj)
+
     return (
         <>
             <table className="table">
@@ -34,7 +57,7 @@ const Tracker = () => {
                     <tr>
                         <th scope='col'>Habit:</th>
                         {daysOfTheWeek.map((day, i) =>
-                            <th scope='col' className="text-center" key={i}>{day}: <span id={i + 1}>{formatDate(i)}</span></th>
+                            <th scope='col' className="text-center" key={i}>{day}: <span id={day}>{formatDate(i)}</span></th>
                         )}
                     </tr>
                 </thead>
@@ -47,6 +70,7 @@ const Tracker = () => {
                     setButtonState ={setButtonState}
                     daysOfTheWeek= {daysOfTheWeek}
                     date = {formatDate}
+                    year = {year}
                 />
             </table>
             <div id="buttonDiv" className="container justify-content-center w-25">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsState, setButtonState, daysOfTheWeek, date }) => {
+const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsState, setButtonState, daysOfTheWeek, date, year }) => {
     if (formState === 'edit') {
         return (
             <tbody>
@@ -50,7 +50,7 @@ const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsSta
                         {deleteHabitButton(i)}
                     </th>
                     {daysOfTheWeek.map((day, i) =>
-                        <td className="text-center" key={i}><input className="form-check-input" type="checkbox" value="" id={day + date} checked="true"/></td>
+                        <td className="text-center" key={i}><input className="form-check-input" type="checkbox" value="" id={`${date(i)}/${year}`}/></td>
                     )}
                 </tr>
             )}
