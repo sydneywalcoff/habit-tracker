@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
 const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsState, setButtonState, daysOfTheWeek, date, year, weekProgress }) => {
+    const [weeklyHabitState, setWeeklyHabitState] = useState(weekProgress.days);
+    console.log(weeklyHabitState)
+    const handleCheckboxChange = (e) => {
+        const dayOfWeekInd = e.target.attributes.j.value;
+        const habitInd = e.target.attributes.i.value;
+        console.log(weeklyHabitState[dayOfWeekInd].habits[habitInd])
+        
+    };
+
     if (formState === 'edit') {
         return (
             <tbody>
@@ -15,7 +24,7 @@ const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsSta
                             </Form>
                         </th>
                         {daysOfTheWeek.map((day, j) =>
-                            <td className="text-center" key={j}><input className="form-check-input" type="checkbox" value=""/></td>
+                            <td className="text-center" key={j}><input className="form-check-input" type="checkbox" value="" /></td>
                         )}
                     </tr>
                 )}
@@ -40,10 +49,6 @@ const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsSta
         }
     };
 
-    // save for later
-    // checked={weekProgress.days[j].habits[i]}
-
-
     return (
         <tbody>
             {habits.map((habit, i) =>
@@ -53,7 +58,7 @@ const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsSta
                         {deleteHabitButton(i)}
                     </th>
                     {daysOfTheWeek.map((day, j) =>
-                        <td className="text-center" key={j}><input className="form-check-input" type="checkbox" value="" id={`${date(i)}/${year}`} /></td>
+                        <td className="text-center" key={j}><input className="form-check-input" type="checkbox" value="" id={`${date(i)}/${year}`} onChange={handleCheckboxChange} i={i} j={j}/></td>
                     )}
                 </tr>
             )}

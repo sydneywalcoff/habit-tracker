@@ -12,27 +12,12 @@ const Tracker = () => {
     const [habits, setHabitsState] = useState(getHabits());
     const [weekProgress, setWeekProgress] = useState({});
     
-    const handleChange = (e) => {
-        if (buttonState === 'add') {
-            setFormValueState(e.target.value)
-        }
-        if (buttonState === 'edit') {
-            const newValue = e.target.value;
-            const oldValue = e.target.attributes.habit.textContent;
-
-            const arrInd = habits.findIndex(el => el === oldValue);
-            let tempArr = [...habits];
-            tempArr[arrInd] = newValue;
-            setHabitsState(tempArr);
-            saveHabits(tempArr);
-        }
-    };
-    const weekProgressObj = {
+    const weeklyHabitObj = {
         weekNumber: weekNumber,
         dayOfWeek: dayOfWeek,
         days: []
     };
-    const tempArr = [...weekProgressObj.days]
+    const tempArr = [...weeklyHabitObj.days]
     daysOfTheWeek.forEach(day => {
         const habitArr = [];
         const dailyObj = {
@@ -49,9 +34,24 @@ const Tracker = () => {
         
         tempArr.push(dailyObj)
     })
+    
+    weeklyHabitObj.days = tempArr;
 
-    weekProgressObj.days = tempArr;
-    console.log(weekProgressObj)
+    const handleChange = (e) => {
+        if (buttonState === 'add') {
+            setFormValueState(e.target.value)
+        }
+        if (buttonState === 'edit') {
+            const newValue = e.target.value;
+            const oldValue = e.target.attributes.habit.textContent;
+
+            const arrInd = habits.findIndex(el => el === oldValue);
+            let tempArr = [...habits];
+            tempArr[arrInd] = newValue;
+            setHabitsState(tempArr);
+            saveHabits(tempArr);
+        }
+    };
 
     return (
         <>
@@ -74,7 +74,7 @@ const Tracker = () => {
                     daysOfTheWeek= {daysOfTheWeek}
                     date = {formatDate}
                     year = {year}
-                    weekProgress = {weekProgressObj}
+                    weekProgress = {weeklyHabitObj}
                 />
             </table>
             <div id="buttonDiv" className="container justify-content-center w-25">
