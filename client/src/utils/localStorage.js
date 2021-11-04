@@ -10,3 +10,16 @@ export const saveHabits = (habitArr) => {
         localStorage.removeItem('habits');
     }
 };
+
+export const saveProgress = (weeklyHabitProgArr) => {
+    if(weeklyHabitProgArr.length) {
+        localStorage.setItem('weekly progress', JSON.stringify(weeklyHabitProgArr));
+    } else {
+        localStorage.removeItem('weekly progress');
+    }
+};
+
+export const getProgress = () => {
+    const weeklyHabitProgArr = localStorage.getItem('weekly progress') ? JSON.parse(localStorage.getItem('weekly progress')) : [];
+    return weeklyHabitProgArr;
+};
