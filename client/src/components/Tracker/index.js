@@ -10,6 +10,7 @@ const Tracker = () => {
     const [formState, setFormState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const [habits, setHabitsState] = useState(getHabits());
+    const [weekProgress, setWeekProgress] = useState({});
     
     const handleChange = (e) => {
         if (buttonState === 'add') {
@@ -26,12 +27,12 @@ const Tracker = () => {
             saveHabits(tempArr);
         }
     };
-
     const weekProgressObj = {
         weekNumber: weekNumber,
         dayOfWeek: dayOfWeek,
         days: []
     };
+    const tempArr = [...weekProgressObj.days]
     daysOfTheWeek.forEach(day => {
         const habitArr = [];
         const dailyObj = {
@@ -43,11 +44,13 @@ const Tracker = () => {
                 habit: habit,
                 complete: false
             };
-            // dailyObj.habits = {...dailyObj.habits, habitObj}
             habitArr.push(habitObj)
         })
-        weekProgressObj.days.push(dailyObj)
+        
+        tempArr.push(dailyObj)
     })
+
+    weekProgressObj.days = tempArr;
     console.log(weekProgressObj)
 
     return (
@@ -71,6 +74,7 @@ const Tracker = () => {
                     daysOfTheWeek= {daysOfTheWeek}
                     date = {formatDate}
                     year = {year}
+                    weekProgress = {weekProgressObj}
                 />
             </table>
             <div id="buttonDiv" className="container justify-content-center w-25">
