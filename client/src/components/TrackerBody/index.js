@@ -14,8 +14,6 @@ const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsSta
         saveProgress(tempArr);
     };
 
-    console.log(weeklyHabitState[0].habits[0].complete);
-
     if (formState === 'edit') {
         return (
             <tbody>
