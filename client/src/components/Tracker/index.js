@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { getHabits, saveHabits } from '../../utils/localStorage';
+import { getHabits, saveHabits, getProgress } from '../../utils/localStorage';
 import { formatDate, weekNumber, year, dayOfWeek } from '../../utils/dateFormat'
 import Buttons from '../Buttons';
 import TrackerBody from '../TrackerBody';
-import { getProgress } from '../../utils/localStorage';
+import Stats from '../Stats'
 
 const Tracker = () => {
     const [buttonState, setButtonState] = useState('');
@@ -97,8 +97,9 @@ const Tracker = () => {
                         setHabitsState={setHabitsState}
                     />
                 </div>
-
+                <Stats />
             </div>
+
         </>
     );
 };
