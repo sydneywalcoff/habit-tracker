@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { saveProgress, getProgress } from '../../utils/localStorage';
 
 const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsState, setButtonState, daysOfTheWeek, date, year, weekProgress }) => {
-    const [weeklyHabitState, setWeeklyHabitState] = useState(weekProgress.days);
-    console.log(weeklyHabitState)
+    const [weeklyHabitState, setWeeklyHabitState] = useState(getProgress());
     const handleCheckboxChange = (e) => {
         const dayOfWeekInd = e.target.attributes.j.value;
         const habitInd = e.target.attributes.i.value;
-        console.log(weeklyHabitState[dayOfWeekInd].habits[habitInd])
-        
+        const tempArr = [...weeklyHabitState];
+        const selectedHabit = tempArr[dayOfWeekInd].habits[habitInd];
+        selectedHabit.complete = !selectedHabit.complete
+        setWeeklyHabitState(tempArr);
+        saveProgress(tempArr);
     };
+
+    console.log(weeklyHabitState[0].habits[0].complete);
 
     if (formState === 'edit') {
         return (
@@ -58,7 +63,7 @@ const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsSta
                         {deleteHabitButton(i)}
                     </th>
                     {daysOfTheWeek.map((day, j) =>
-                        <td className="text-center" key={j}><input className="form-check-input" type="checkbox" value="" id={`${date(i)}/${year}`} onChange={handleCheckboxChange} i={i} j={j}/></td>
+                        <td className="text-center" key={j}><input className="form-check-input" type="checkbox" value="" id={`${date(i)}/${year}`} onChange={handleCheckboxChange} i={i} j={j} checked={weeklyHabitState[j].habits[i].complete}/></td>
                     )}
                 </tr>
             )}
