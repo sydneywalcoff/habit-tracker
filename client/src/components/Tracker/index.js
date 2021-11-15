@@ -3,6 +3,7 @@ import { getHabits, saveHabits } from '../../utils/localStorage';
 import { formatDate, weekNumber, year, dayOfWeek } from '../../utils/dateFormat'
 import Buttons from '../Buttons';
 import TrackerBody from '../TrackerBody';
+import { getProgress } from '../../utils/localStorage';
 
 const Tracker = () => {
     const [buttonState, setButtonState] = useState('');
@@ -10,7 +11,7 @@ const Tracker = () => {
     const [formState, setFormState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const [habits, setHabitsState] = useState(getHabits());
-    const [weekProgress, setWeekProgress] = useState({});
+    const [weeklyHabitState, setWeeklyHabitState] = useState(getProgress());
     
     const weeklyHabitObj = {
         weekNumber: weekNumber,
@@ -74,7 +75,8 @@ const Tracker = () => {
                     daysOfTheWeek= {daysOfTheWeek}
                     date = {formatDate}
                     year = {year}
-                    weekProgress = {weeklyHabitObj}
+                    weeklyHabitState = {weeklyHabitState}
+                    setWeeklyHabitState = {setWeeklyHabitState}
                 />
             </table>
             <div id="buttonDiv" className="container justify-content-center w-25">

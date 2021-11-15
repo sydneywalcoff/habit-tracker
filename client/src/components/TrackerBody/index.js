@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { saveProgress, getProgress } from '../../utils/localStorage';
+import { saveProgress } from '../../utils/localStorage';
 
-const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsState, setButtonState, daysOfTheWeek, date, year, weekProgress }) => {
-    const [weeklyHabitState, setWeeklyHabitState] = useState(getProgress());
+const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsState, setButtonState, daysOfTheWeek, date, year, weeklyHabitState, setWeeklyHabitState }) => {
     const handleCheckboxChange = (e) => {
         const dayOfWeekInd = e.target.attributes.j.value;
         const habitInd = e.target.attributes.i.value;
