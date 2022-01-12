@@ -10,7 +10,6 @@ const Tracker = () => {
     const [formState, setFormState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const [habits, setHabitsState] = useState(getHabits());
-    const [weekProgress, setWeekProgress] = useState({});
     
     const weeklyHabitObj = {
         weekNumber: weekNumber,
