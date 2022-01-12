@@ -61,7 +61,7 @@ const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsSta
                         {deleteHabitButton(i)}
                     </th>
                     {daysOfTheWeek.map((day, j) =>
-                        <td className="text-center" key={j}><input className="form-check-input" type="checkbox" value="" id={`${date(i)}/${year}`} onChange={handleCheckboxChange} i={i} j={j} checked={weeklyHabitState[j].habits[i].complete}/></td>
+                        <td className="text-center" key={j}><input className="form-check-input" type="checkbox" value="" id={`${date(i)}/${year}`} onChange={handleCheckboxChange} i={i} j={j}/></td>
                     )}
                 </tr>
             )}
