@@ -22,7 +22,7 @@ const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsSta
                         <th scope="row" id={i}>
                             <Form>
                                 <Form.Group>
-                                    <Form.Control type="text" placeholder={habit} onChange={handleChange} habit={habit} />
+                                    <Form.Control type="text" placeholder={habit} onChange={handleChange} habit={habit} i={i}/>
                                 </Form.Group>
                             </Form>
                         </th>
