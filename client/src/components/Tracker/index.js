@@ -10,12 +10,11 @@ const Tracker = () => {
     const [formState, setFormState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const [habits, setHabitsState] = useState(getHabits());
-    const [weekProgress, setWeekProgress] = useState({});
-    
     const weeklyHabitObj = {
         weekNumber: weekNumber,
         dayOfWeek: dayOfWeek,
-        days: []
+        days: [], 
+        habits: habits
     };
     const tempArr = [...weeklyHabitObj.days]
     daysOfTheWeek.forEach(day => {
@@ -34,18 +33,15 @@ const Tracker = () => {
         
         tempArr.push(dailyObj)
     })
-    
     weeklyHabitObj.days = tempArr;
-
+    
     const handleChange = (e) => {
         if (buttonState === 'add') {
             setFormValueState(e.target.value)
         }
         if (buttonState === 'edit') {
             const newValue = e.target.value;
-            const oldValue = e.target.attributes.habit.textContent;
-
-            const arrInd = habits.findIndex(el => el === oldValue);
+            const arrInd = e.target.attributes.i.textContent;
             let tempArr = [...habits];
             tempArr[arrInd] = newValue;
             setHabitsState(tempArr);
