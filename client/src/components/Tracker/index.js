@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { DateTime } from 'luxon';
 import { getHabits, saveHabits } from '../../utils/localStorage';
+import { formatDate, weekNumber, year, dayOfWeek } from '../../utils/dateFormat'
 import Buttons from '../Buttons';
 import TrackerBody from '../TrackerBody';
 
@@ -10,15 +10,36 @@ const Tracker = () => {
     const [formState, setFormState] = useState('');
     const daysOfTheWeek = ['Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const [habits, setHabitsState] = useState(getHabits());
-
-    const dayOfWeek = DateTime.local().weekday;
-    const month = DateTime.local().month;
-    const date = DateTime.local().day;
+    const [weekProgress, setWeekProgress] = useState({});
     
+    const weeklyHabitObj = {
+        weekNumber: weekNumber,
+        dayOfWeek: dayOfWeek,
+        days: []
+    };
+    const tempArr = [...weeklyHabitObj.days]
+    daysOfTheWeek.forEach(day => {
+        const habitArr = [];
+        const dailyObj = {
+            day: day,
+            habits: habitArr
+        };
+        habits.forEach(habit => {
+            const habitObj = {
+                habit: habit,
+                complete: false
+            };
+            habitArr.push(habitObj)
+        })
+        
+        tempArr.push(dailyObj)
+    })
+    
+    weeklyHabitObj.days = tempArr;
+
     const handleChange = (e) => {
         if (buttonState === 'add') {
             setFormValueState(e.target.value)
-            console.log(formValue)
         }
         if (buttonState === 'edit') {
             const newValue = e.target.value;
@@ -39,7 +60,7 @@ const Tracker = () => {
                     <tr>
                         <th scope='col'>Habit:</th>
                         {daysOfTheWeek.map((day, i) =>
-                            <th scope='col' className="text-center" key={i}>{day}: <span id={i + 1}>{dayOfWeek === 1 ? `${month}/ ${date - i}` : `${month}/ ${date - dayOfWeek + 1 + i}`}</span></th>
+                            <th scope='col' className="text-center" key={i}>{day}: <span id={day}>{formatDate(i)}</span></th>
                         )}
                     </tr>
                 </thead>
@@ -51,12 +72,15 @@ const Tracker = () => {
                     setHabitsState={setHabitsState}
                     setButtonState ={setButtonState}
                     daysOfTheWeek= {daysOfTheWeek}
+                    date = {formatDate}
+                    year = {year}
+                    weekProgress = {weeklyHabitObj}
                 />
             </table>
             <div id="buttonDiv" className="container justify-content-center w-25">
                 {habits.length === 0 && (
                     <div className="row">
-                        <p className="text-center">You haven't added any habits yet :(</p>
+                        <p className="text-center my-5">You haven't added any habits yet :(</p>
                     </div>
                 )}
                 <div className="row">

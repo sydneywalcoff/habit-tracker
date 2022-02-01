@@ -19,16 +19,16 @@ const Buttons = ({ buttonState, setButtonState, setFormState, handleChange, habi
     const saveButtonHandler = () => {
         if (buttonState === 'add') {
             let tempArr = [...habits];
+            const habitObj = {
+                habit: formValue,
+                complete: false
+            };
+            console.log(habitObj)
             tempArr.push(formValue);
             setHabitsState(tempArr)
             saveHabits(tempArr);
         }
-        if (buttonState === 'edit') {
-            setFormState('');
-        }
-        if (buttonState === 'delete') {
-
-        }
+        setFormState('');
         setButtonState('');
     };
 
