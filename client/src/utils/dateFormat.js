@@ -1,10 +1,8 @@
 import { DateTime } from 'luxon';
 
 const dayOfWeek = DateTime.local().weekday;
-// const month = DateTime.local().month;
-// const date = DateTime.local().day;
-let month = 3;
-const date = 29;
+const month = DateTime.local().month;
+const date = DateTime.local().day;
 const weekNumber = DateTime.local().weekNumber;
 const year = DateTime.local().year;
 
@@ -35,9 +33,8 @@ const formatDate = (i) => {
             if(month+1 > 12)  {
                 formattedDate = `1/${date - dayOfWeek + 1 + i - parseInt(months[12])}`
             } else {
-                formattedDate = `${month+1}/${date - dayOfWeek + 1 + i - parseInt(months[12])}`
+                formattedDate = `${month+1}/${date - dayOfWeek + 1 + i - parseInt(months[month])}`
             }
-            
         } else {
             formattedDate =`${month}/${date - dayOfWeek + 1 + i}`
         }
