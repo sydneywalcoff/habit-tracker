@@ -4,15 +4,15 @@ import { saveProgress, getProgress } from '../../utils/localStorage';
 
 const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsState, setButtonState, daysOfTheWeek, date, year, weekProgress }) => {
     const [weeklyHabitState, setWeeklyHabitState] = useState(getProgress());
-    const handleCheckboxChange = (e) => {
-        const dayOfWeekInd = e.target.attributes.j.value;
-        const habitInd = e.target.attributes.i.value;
-        const tempArr = [...weeklyHabitState];
-        const selectedHabit = tempArr[dayOfWeekInd].habits[habitInd];
-        selectedHabit.complete = !selectedHabit.complete
-        setWeeklyHabitState(tempArr);
-        saveProgress(tempArr);
-    };
+    // const handleCheckboxChange = (e) => {
+    //     const dayOfWeekInd = e.target.attributes.j.value;
+    //     const habitInd = e.target.attributes.i.value;
+    //     const tempArr = [...weeklyHabitState];
+    //     const selectedHabit = tempArr[dayOfWeekInd].habits[habitInd];
+    //     selectedHabit.complete = !selectedHabit.complete
+    //     setWeeklyHabitState(tempArr);
+    //     saveProgress(tempArr);
+    // };
 
     if (formState === 'edit') {
         return (
@@ -61,7 +61,7 @@ const TrackerBody = ({ formState, handleChange, habits, saveHabits, setHabitsSta
                         {deleteHabitButton(i)}
                     </th>
                     {daysOfTheWeek.map((day, j) =>
-                        <td className="text-center" key={j}><input className="form-check-input" type="checkbox" value="" id={`${date(i)}/${year}`} onChange={handleCheckboxChange} i={i} j={j} checked={weeklyHabitState[j].habits[i].complete}/></td>
+                        <td className="text-center" key={j}><input className="form-check-input" type="checkbox" value="" id={`${date(i)}/${year}`} i={i} j={j} /></td>
                     )}
                 </tr>
             )}
